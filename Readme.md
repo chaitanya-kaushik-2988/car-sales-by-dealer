@@ -168,6 +168,7 @@
 - Install dependencies using **pip install -r requirements.txt**
 - Run the FastAPI application using **uvicorn main:app --reload**
 - Access the Swagger documentation at **http://127.0.0.1:8000/docs** for interactive API testing.
+- You can also use postman collection for testing API requests
 
 
 ## Why FastAPI?
