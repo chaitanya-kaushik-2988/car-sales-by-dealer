@@ -163,6 +163,9 @@
 - **Endpoint:** GET /sales/
 - **Description:** Retrieve a list of all sales.
 
+## Python Version
+- Python 3.8.10
+
 ## Usage
 
 - Install dependencies using **pip install -r requirements.txt**

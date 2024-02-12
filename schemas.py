@@ -3,6 +3,7 @@ from datetime import date
 from pydantic import BaseModel
 from typing import List, Optional
 
+
 class DealerBase(BaseModel):
     """
     Base schema for a dealer.
@@ -16,17 +17,20 @@ class DealerBase(BaseModel):
     location: str
     contact_info: Optional[str]
 
+
 class DealerCreate(DealerBase):
     """
     Schema for creating a new dealer, inherits from DealerBase.
     """
     pass
 
+
 class DealerUpdate(DealerBase):
     """
     Schema for updating an existing dealer, inherits from DealerBase.
     """
     pass
+
 
 class DealerResponse(BaseModel):
     """
@@ -47,6 +51,7 @@ class DealerResponse(BaseModel):
     cars: List["CarListResponse"] = []
     sales: List["SaleResponse"] = []
 
+
 class DealerListResponse(BaseModel):
     """
     Response schema for a list of dealers.
@@ -61,6 +66,7 @@ class DealerListResponse(BaseModel):
     name: str
     location: str
     contact_info: Optional[str]
+
 
 class CarBase(BaseModel):
     """
@@ -81,6 +87,7 @@ class CarBase(BaseModel):
     vin: str
     price: float
 
+
 class CarCreate(CarBase):
     """
     Schema for creating a new car, inherits from CarBase.
@@ -90,11 +97,13 @@ class CarCreate(CarBase):
     """
     dealer_id: int
 
+
 class CarUpdate(CarBase):
     """
     Schema for updating an existing car, inherits from CarBase.
     """
     pass
+
 
 class CarResponse(BaseModel):
     """
@@ -119,6 +128,7 @@ class CarResponse(BaseModel):
     price: float
     dealer: Optional[DealerResponse]
 
+
 class CarListResponse(BaseModel):
     """
     Response schema for a list of cars.
@@ -140,6 +150,7 @@ class CarListResponse(BaseModel):
     vin: str
     price: float
 
+
 class CustomerBase(BaseModel):
     """
     Base schema for a customer.
@@ -155,17 +166,20 @@ class CustomerBase(BaseModel):
     contact_info: Optional[str]
     address: Optional[str]
 
+
 class CustomerCreate(CustomerBase):
     """
     Schema for creating a new customer, inherits from CustomerBase.
     """
     pass
 
+
 class CustomerUpdate(CustomerBase):
     """
     Schema for updating an existing customer, inherits from CustomerBase.
     """
     pass
+
 
 class CustomerResponse(BaseModel):
     """
@@ -186,6 +200,7 @@ class CustomerResponse(BaseModel):
     address: Optional[str]
     sales: List["SaleResponse"] = []
 
+
 class CustomerListResponse(BaseModel):
     """
     Response schema for a list of customers.
@@ -203,6 +218,7 @@ class CustomerListResponse(BaseModel):
     contact_info: Optional[str]
     address: Optional[str]
 
+
 class SaleBase(BaseModel):
     """
     Base schema for a sale.
@@ -215,6 +231,7 @@ class SaleBase(BaseModel):
     sale_date: date
     sale_amount: float
     payment_method: str
+
 
 class SaleCreate(SaleBase):
     """
@@ -229,11 +246,13 @@ class SaleCreate(SaleBase):
     car_id: int
     customer_id: int
 
+
 class SaleUpdate(SaleBase):
     """
     Schema for updating an existing sale, inherits from SaleBase.
     """
     pass
+
 
 class SaleResponse(BaseModel):
     """
@@ -255,6 +274,7 @@ class SaleResponse(BaseModel):
     dealer: Optional[DealerListResponse]
     car: Optional[CarListResponse]
     customer: Optional[CustomerListResponse]
+
 
 class SaleListResponse(BaseModel):
     """

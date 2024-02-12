@@ -14,6 +14,8 @@ from session import get_db
 router = APIRouter()
 
 # Dealer routes
+
+
 @router.post("/dealers/", response_model=DealerResponse)
 def create_dealer(dealer: DealerCreate, db: Session = Depends(get_db)):
     """
@@ -32,6 +34,7 @@ def create_dealer(dealer: DealerCreate, db: Session = Depends(get_db)):
     db.refresh(db_dealer)
     return db_dealer
 
+
 @router.get("/dealers/", response_model=List[DealerResponse])
 def get_all_dealers(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     """
@@ -47,6 +50,7 @@ def get_all_dealers(skip: int = 0, limit: int = 10, db: Session = Depends(get_db
     """
     dealers = db.query(Dealer).offset(skip).limit(limit).all()
     return dealers
+
 
 @router.get("/dealers/{dealer_id}", response_model=DealerResponse)
 def read_dealer(dealer_id: int, db: Session = Depends(get_db)):
@@ -64,6 +68,7 @@ def read_dealer(dealer_id: int, db: Session = Depends(get_db)):
     if dealer is None:
         raise HTTPException(status_code=404, detail="Dealer not found")
     return dealer
+
 
 @router.put("/dealers/{dealer_id}", response_model=DealerResponse)
 def update_dealer(dealer_id: int, dealer: DealerUpdate, db: Session = Depends(get_db)):
@@ -89,6 +94,7 @@ def update_dealer(dealer_id: int, dealer: DealerUpdate, db: Session = Depends(ge
     db.refresh(db_dealer)
     return db_dealer
 
+
 @router.delete("/dealers/{dealer_id}", response_model=DealerResponse)
 def delete_dealer(dealer_id: int, db: Session = Depends(get_db)):
     """
@@ -104,12 +110,14 @@ def delete_dealer(dealer_id: int, db: Session = Depends(get_db)):
     dealer = db.query(Dealer).filter(Dealer.id == dealer_id).first()
     if dealer is None:
         raise HTTPException(status_code=404, detail="Dealer not found")
-    
+
     db.delete(dealer)
     db.commit()
     return dealer
 
 # Car routes
+
+
 @router.post("/cars/", response_model=CarResponse)
 def create_car(car: CarCreate, db: Session = Depends(get_db)):
     """
@@ -128,6 +136,7 @@ def create_car(car: CarCreate, db: Session = Depends(get_db)):
     db.refresh(db_car)
     return db_car
 
+
 @router.get("/cars/", response_model=List[CarResponse])
 def get_all_cars(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     """
@@ -143,6 +152,7 @@ def get_all_cars(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     """
     cars = db.query(Car).offset(skip).limit(limit).all()
     return cars
+
 
 @router.get("/cars/{car_id}", response_model=CarResponse)
 def read_car(car_id: int, db: Session = Depends(get_db)):
@@ -160,6 +170,7 @@ def read_car(car_id: int, db: Session = Depends(get_db)):
     if car is None:
         raise HTTPException(status_code=404, detail="Car not found")
     return car
+
 
 @router.put("/cars/{car_id}", response_model=CarResponse)
 def update_car(car_id: int, car: CarUpdate, db: Session = Depends(get_db)):
@@ -185,6 +196,7 @@ def update_car(car_id: int, car: CarUpdate, db: Session = Depends(get_db)):
     db.refresh(db_car)
     return db_car
 
+
 @router.delete("/cars/{car_id}", response_model=CarListResponse)
 def delete_car(car_id: int, db: Session = Depends(get_db)):
     """
@@ -200,12 +212,14 @@ def delete_car(car_id: int, db: Session = Depends(get_db)):
     car = db.query(Car).filter(Car.id == car_id).first()
     if car is None:
         raise HTTPException(status_code=404, detail="Car not found")
-    
+
     db.delete(car)
     db.commit()
     return car
 
 # Customer routes
+
+
 @router.post("/customers/", response_model=CustomerResponse)
 def create_customer(customer: CustomerCreate, db: Session = Depends(get_db)):
     """
@@ -224,6 +238,7 @@ def create_customer(customer: CustomerCreate, db: Session = Depends(get_db)):
     db.refresh(db_customer)
     return db_customer
 
+
 @router.get("/customers/", response_model=List[CustomerResponse])
 def get_all_customers(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     """
@@ -239,6 +254,7 @@ def get_all_customers(skip: int = 0, limit: int = 10, db: Session = Depends(get_
     """
     customers = db.query(Customer).offset(skip).limit(limit).all()
     return customers
+
 
 @router.get("/customers/{customer_id}", response_model=CustomerResponse)
 def read_customer(customer_id: int, db: Session = Depends(get_db)):
@@ -256,6 +272,7 @@ def read_customer(customer_id: int, db: Session = Depends(get_db)):
     if customer is None:
         raise HTTPException(status_code=404, detail="Customer not found")
     return customer
+
 
 @router.put("/customers/{customer_id}", response_model=CustomerResponse)
 def update_customer(customer_id: int, customer: CustomerUpdate, db: Session = Depends(get_db)):
@@ -281,6 +298,7 @@ def update_customer(customer_id: int, customer: CustomerUpdate, db: Session = De
     db.refresh(db_customer)
     return db_customer
 
+
 @router.delete("/customers/{customer_id}", response_model=CustomerResponse)
 def delete_customer(customer_id: int, db: Session = Depends(get_db)):
     """
@@ -296,12 +314,14 @@ def delete_customer(customer_id: int, db: Session = Depends(get_db)):
     customer = db.query(Customer).filter(Customer.id == customer_id).first()
     if customer is None:
         raise HTTPException(status_code=404, detail="Customer not found")
-    
+
     db.delete(customer)
     db.commit()
     return customer
 
 # Sale routes
+
+
 @router.post("/sales/", response_model=SaleResponse)
 def create_sale(sale: SaleCreate, db: Session = Depends(get_db)):
     """
@@ -320,6 +340,7 @@ def create_sale(sale: SaleCreate, db: Session = Depends(get_db)):
     db.refresh(db_sale)
     return db_sale
 
+
 @router.get("/sales/", response_model=List[SaleResponse])
 def get_all_sales(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     """
@@ -335,6 +356,7 @@ def get_all_sales(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
     """
     sales = db.query(Sale).offset(skip).limit(limit).all()
     return sales
+
 
 @router.get("/sales/{sale_id}", response_model=SaleResponse)
 def read_sale(sale_id: int, db: Session = Depends(get_db)):
@@ -352,6 +374,7 @@ def read_sale(sale_id: int, db: Session = Depends(get_db)):
     if sale is None:
         raise HTTPException(status_code=404, detail="Sale not found")
     return sale
+
 
 @router.put("/sales/{sale_id}", response_model=SaleResponse)
 def update_sale(sale_id: int, sale: SaleUpdate, db: Session = Depends(get_db)):
@@ -377,6 +400,7 @@ def update_sale(sale_id: int, sale: SaleUpdate, db: Session = Depends(get_db)):
     db.refresh(db_sale)
     return db_sale
 
+
 @router.delete("/sales/{sale_id}", response_model=SaleListResponse)
 def delete_sale(sale_id: int, db: Session = Depends(get_db)):
     """
@@ -392,7 +416,7 @@ def delete_sale(sale_id: int, db: Session = Depends(get_db)):
     sale = db.query(Sale).filter(Sale.id == sale_id).first()
     if sale is None:
         raise HTTPException(status_code=404, detail="Sale not found")
-    
+
     db.delete(sale)
     db.commit()
     return sale

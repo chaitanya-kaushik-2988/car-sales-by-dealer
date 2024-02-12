@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from db import Base
 
+
 class Dealer(Base):
     """
     Represents a car dealer.
@@ -23,6 +24,7 @@ class Dealer(Base):
 
     cars = relationship("Car", back_populates="dealer")
     sales = relationship("Sale", back_populates="dealer")
+
 
 class Car(Base):
     """
@@ -54,6 +56,7 @@ class Car(Base):
     dealer = relationship("Dealer", back_populates="cars")
     sale = relationship("Sale", uselist=False, back_populates="car")
 
+
 class Customer(Base):
     """
     Represents a customer.
@@ -75,6 +78,7 @@ class Customer(Base):
     address = Column(String)
 
     sales = relationship("Sale", back_populates="customer")
+
 
 class Sale(Base):
     """
